@@ -1,95 +1,86 @@
 "use client";
 
-import styles from './About.module.css';
-import { motion } from 'framer-motion';
-import { Cpu, Globe, Zap } from 'lucide-react';
+import { motion } from "framer-motion";
+import styles from "./About.module.css";
 
-const About = () => {
-  const skills = [
-    "Next.js", "TypeScript", "React", "Node.js", 
-    "Python", "PostgreSQL", "Docker", "AWS"
-  ];
+interface Stat {
+  value: string;
+  label: string;
+}
+
+interface AboutData {
+  bio: string;
+  skills: string[];
+  stats: Stat[];
+}
+
+interface AboutProps {
+  data: AboutData | null;
+}
+
+const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
+
+const DEFAULT_DATA: AboutData = {
+  bio: "Deeply immersed in software development since 2018. I build scalable, maintainable systems with a focus on clean architecture and engineering discipline.",
+  skills: ["Next.js", "TypeScript", "React", "Node.js", "Python", "PostgreSQL", "Docker", "AWS"],
+  stats: [
+    { value: "50+", label: "Deployments" },
+    { value: "10+", label: "Regions" },
+    { value: "99.9%", label: "Uptime" },
+  ],
+};
+
+const fadeUp = {
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+  transition: { duration: 0.55, ease: EASE },
+};
+
+export default function About({ data }: AboutProps) {
+  const { bio, skills, stats } = data ?? DEFAULT_DATA;
+  const safeStats = stats as Stat[];
 
   return (
     <section id="about" className={styles.about}>
       <div className={styles.container}>
-        <motion.div 
-          className={styles.header}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          <h2 className={styles.title}>About <span className="neon-text">Me</span></h2>
-          <div className={styles.line}></div>
+        <motion.div className={styles.header} {...fadeUp}>
+          <span className={styles.sublabel}>02 — ABOUT</span>
+          <h2 className={styles.title}>Who I Am</h2>
         </motion.div>
 
-        <div className={styles.grid}>
-          <motion.div 
-            className={styles.textSide}
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-          >
-            <p className={styles.bio}>
-              Deeply immersed in the world of code since 2018. I build 
-              highly scalable and performant web applications using 
-              cutting-edge technologies. My philosophy is to blend 
-              technical excellence with aesthetic precision.
-            </p>
-            
-            <div className={styles.stats}>
-              <div className={styles.statBox}>
-                <Cpu size={24} className={styles.icon} />
-                <div>
-                  <h3>50+</h3>
-                  <p>Deployments</p>
-                </div>
-              </div>
-              <div className={styles.statBox}>
-                <Globe size={24} className={styles.icon} />
-                <div>
-                  <h3>10+</h3>
-                  <p>Regions</p>
-                </div>
-              </div>
-              <div className={styles.statBox}>
-                <Zap size={24} className={styles.icon} />
-                <div>
-                  <h3>99.9%</h3>
-                  <p>Uptime</p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
+        <motion.div
+          className={styles.body}
+          {...fadeUp}
+          transition={{ duration: 0.55, delay: 0.1, ease: EASE }}
+        >
+          <p className={styles.bio}>{bio}</p>
 
-          <motion.div 
-            className={styles.skillSide}
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
-          >
-            <h3 className={styles.skillTitle}>Tech Stack</h3>
-            <div className={styles.skillGrid}>
-              {skills.map((skill, index) => (
-                <div key={index} className={styles.skillBadge}>
-                  {skill}
-                </div>
-              ))}
-            </div>
-            
-            <div className={styles.profileFrame}>
-               {/* Placeholder for Profile Image */}
-               <div className={styles.profilePlaceholder}>
-                 <span>IMAGE_DATA</span>
-               </div>
-            </div>
-          </motion.div>
-        </div>
+          <div className={styles.stats}>
+            {safeStats.map(({ value, label }) => (
+              <div key={label} className={styles.statItem}>
+                <span className={styles.statValue}>{value}</span>
+                <span className={styles.statLabel}>{label}</span>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
+        <motion.div
+          className={styles.skills}
+          {...fadeUp}
+          transition={{ duration: 0.55, delay: 0.2, ease: EASE }}
+        >
+          <span className={styles.skillsLabel}>TECH STACK</span>
+          <div className={styles.skillGrid}>
+            {skills.map((skill) => (
+              <span key={skill} className={styles.skillBadge}>
+                {skill}
+              </span>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );
-};
-
-export default About;
+}

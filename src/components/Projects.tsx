@@ -1,84 +1,76 @@
 "use client";
 
-import styles from './Projects.module.css';
-import { motion } from 'framer-motion';
-import { ExternalLink, CodeXml } from 'lucide-react';
+import { motion } from "framer-motion";
+import styles from "./Projects.module.css";
 
-const Projects = () => {
-  const projects = [
-    {
-      title: "Neural Network Viz",
-      description: "A real-time visualization of neural network layers and weight distributions.",
-      tech: ["Next.js", "Three.js", "TensorFlow.js"],
-      link: "#",
-      github: "#"
-    },
-    {
-      title: "Quantum Ledger",
-      description: "Decentralized finance dashboard with quantum-resistant encryption patterns.",
-      tech: ["React", "Solidity", "Ethers.js"],
-      link: "#",
-      github: "#"
-    },
-    {
-      title: "Cyber-Security OS",
-      description: "A web-based terminal interface for monitoring network security and vulnerabilities.",
-      tech: ["Node.js", "Socket.io", "React"],
-      link: "#",
-      github: "#"
-    }
-  ];
+interface Project {
+  id: number;
+  title: string;
+  category: string;
+  year: string;
+  thumbnailUrl?: string | null;
+}
+
+interface ProjectsProps {
+  data: Project[];
+}
+
+const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
+
+const DEFAULT_PROJECTS: Project[] = [
+  { id: 1, title: "Neural Network Viz", category: "Data Visualization", year: "2024" },
+  { id: 2, title: "Quantum Ledger", category: "Fintech / Web3", year: "2024" },
+  { id: 3, title: "Cyber-Security OS", category: "Security Tool", year: "2023" },
+];
+
+export default function Projects({ data }: ProjectsProps) {
+  const projects = data.length > 0 ? data : DEFAULT_PROJECTS;
 
   return (
     <section id="projects" className={styles.projects}>
       <div className={styles.container}>
-        <motion.div 
+        <motion.div
           className={styles.header}
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.55, ease: EASE }}
         >
-          <h2 className={styles.title}>Recent <span className="neon-text">Projects</span></h2>
-          <div className={styles.line}></div>
+          <span className={styles.sublabel}>03 — SELECTED WORKS</span>
+          <h2 className={styles.title}>Projects</h2>
         </motion.div>
 
         <div className={styles.grid}>
           {projects.map((project, index) => (
-            <motion.div 
-              key={index}
+            <motion.a
+              key={project.id}
+              href={`/projects/${project.id}`}
               className={styles.card}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
+              transition={{ duration: 0.55, delay: index * 0.08, ease: EASE }}
             >
-              <div className={styles.cardHeader}>
-                <div className={styles.browserDots}>
-                  <span></span><span></span><span></span>
-                </div>
-                <div className={styles.links}>
-                  <a href={project.github} title="View Source"><CodeXml size={18} /></a>
-                  <a href={project.link} title="Live Demo"><ExternalLink size={18} /></a>
-                </div>
+              <div className={styles.thumbnail}>
+                {project.thumbnailUrl && (
+                  <img
+                    src={project.thumbnailUrl}
+                    alt={project.title}
+                    className={styles.thumbnailImg}
+                  />
+                )}
               </div>
-              
-              <div className={styles.cardContent}>
-                <h3 className={styles.projectTitle}>{project.title}</h3>
-                <p className={styles.projectDesc}>{project.description}</p>
-                <div className={styles.techStack}>
-                  {project.tech.map((t, i) => (
-                    <span key={i} className={styles.techTag}>{t}</span>
-                  ))}
+              <div className={styles.cardMeta}>
+                <div className={styles.cardInfo}>
+                  <span className={styles.projectName}>{project.title}</span>
+                  <span className={styles.projectCategory}>{project.category}</span>
                 </div>
+                <span className={styles.projectYear}>{project.year}</span>
               </div>
-              
-              <div className={styles.glowOverlay}></div>
-            </motion.div>
+            </motion.a>
           ))}
         </div>
       </div>
     </section>
   );
-};
-
-export default Projects;
+}

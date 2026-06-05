@@ -1,22 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600&display=swap');
-
 :root {
-  --background: #050505;
-  --foreground: #e0e0e0;
-  --primary: #00f2ff;
-  --secondary: #7000ff;
-  --surface: #111111;
-  --surface-hover: #1a1a1a;
-  --border: rgba(255, 255, 255, 0.1);
-  --glow-primary: rgba(0, 242, 255, 0.5);
-  --glow-secondary: rgba(112, 0, 255, 0.5);
-  
-  --font-heading: 'Orbitron', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-  --font-body: 'Inter', sans-serif;
+  --bg-base: #FAFAFA;
+  --bg-surface: #FFFFFF;
+  --bg-navbar: rgba(250, 250, 250, 0.85);
+  --text-primary: #0F172A;
+  --text-secondary: #64748B;
+  --border: #E2E8F0;
+  --border-strong: #CBD5E1;
 }
 
-* {
+:root.dark {
+  --bg-base: #0F172A;
+  --bg-surface: #1E293B;
+  --bg-navbar: rgba(15, 23, 42, 0.85);
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --border: #1E293B;
+  --border-strong: #334155;
+}
+
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -26,30 +30,20 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
-  background-color: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-body);
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-main, sans-serif);
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
-  min-height: 100vh;
-  background-image: 
-    linear-gradient(rgba(0, 242, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 242, 255, 0.03) 1px, transparent 1px);
-  background-size: 50px 50px;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
-  letter-spacing: 2px;
-  text-transform: uppercase;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 a {
   color: inherit;
   text-decoration: none;
-  transition: all 0.3s ease;
 }
 
 button {
@@ -59,44 +53,26 @@ button {
   font-family: inherit;
 }
 
-/* Custom Scrollbar */
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* Anchor offset for sticky navbar */
+#about,
+#projects,
+#contact {
+  scroll-margin-top: 80px;
+}
+
+/* Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
-
 ::-webkit-scrollbar-track {
-  background: var(--background);
+  background: var(--bg-base);
 }
-
 ::-webkit-scrollbar-thumb {
-  background: var(--surface);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--primary);
-  box-shadow: 0 0 10px var(--primary);
-}
-
-/* Utilities */
-.glass {
-  background: rgba(17, 17, 17, 0.7);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--border);
-}
-
-.neon-border {
-  border: 1px solid var(--primary);
-  box-shadow: 0 0 15px var(--glow-primary);
-}
-
-.neon-text {
-  color: var(--primary);
-  text-shadow: 0 0 10px var(--glow-primary);
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
+  background: var(--border-strong);
+  border-radius: 3px;
 }

@@ -1,77 +1,83 @@
 "use client";
 
-import styles from './Contact.module.css';
-import { motion } from 'framer-motion';
-import { Mail, MessageSquare, Send } from 'lucide-react';
+import { motion } from "framer-motion";
+import styles from "./Contact.module.css";
+
+const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
+
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+  transition: { duration: 0.55, delay, ease: EASE },
+});
 
 const Contact = () => {
   return (
     <section id="contact" className={styles.contact}>
       <div className={styles.container}>
-        <motion.div 
-          className={styles.header}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          <h2 className={styles.title}>Initialize <span className="neon-text">Contact</span></h2>
-          <div className={styles.line}></div>
+        <motion.div className={styles.header} {...fadeUp()}>
+          <span className={styles.sublabel}>04 — CONTACT</span>
+          <h2 className={styles.title}>Get in Touch</h2>
         </motion.div>
 
         <div className={styles.grid}>
-          <motion.div 
-            className={styles.info}
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
-            <h3 className={styles.infoTitle}>Network Access</h3>
+          <motion.div className={styles.info} {...fadeUp(0.1)}>
             <p className={styles.infoDesc}>
-              Ready to collaborate on futuristic projects. Open for freelance, 
-              full-time positions, or technical consulting.
+              Open to freelance work, full-time positions, or technical
+              consulting. Let&apos;s build something great together.
             </p>
-            
-            <div className={styles.contactMethods}>
-              <div className={styles.method}>
-                <Mail className={styles.icon} />
-                <span>jerry@future.dev</span>
-              </div>
-              <div className={styles.method}>
-                <MessageSquare className={styles.icon} />
-                <span>@jerry_dev (Discord)</span>
-              </div>
-            </div>
+            <a
+              href="mailto:yeremia.christopher@gmail.com"
+              className={styles.email}
+            >
+              yeremia.christopher@gmail.com
+            </a>
           </motion.div>
 
-          <motion.form 
+          <motion.form
             className={styles.form}
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
             onSubmit={(e) => e.preventDefault()}
+            {...fadeUp(0.2)}
           >
-            <div className={styles.inputGroup}>
-              <label>Identification</label>
-              <input type="text" placeholder="Your Name" />
+            <div className={styles.field}>
+              <label className={styles.label} htmlFor="name">NAME</label>
+              <input
+                id="name"
+                type="text"
+                placeholder="Your name"
+                className={styles.input}
+              />
             </div>
-            <div className={styles.inputGroup}>
-              <label>Communication Protocol</label>
-              <input type="email" placeholder="Your Email" />
+            <div className={styles.field}>
+              <label className={styles.label} htmlFor="email">EMAIL</label>
+              <input
+                id="email"
+                type="email"
+                placeholder="your@email.com"
+                className={styles.input}
+              />
             </div>
-            <div className={styles.inputGroup}>
-              <label>Data Payload</label>
-              <textarea placeholder="Your Message" rows={5}></textarea>
+            <div className={styles.field}>
+              <label className={styles.label} htmlFor="message">MESSAGE</label>
+              <textarea
+                id="message"
+                rows={5}
+                placeholder="Your message"
+                className={styles.textarea}
+              />
             </div>
-            
             <button type="submit" className={styles.submitBtn}>
-              Send Signal <Send size={18} />
+              Send Message
             </button>
           </motion.form>
         </div>
       </div>
-      
+
       <footer className={styles.footer}>
-        <p>&copy; 2026 JERRY_DEV. All systems operational.</p>
+        <p className={styles.footerText}>
+          © 2026 Yeremia. All rights reserved.
+        </p>
       </footer>
     </section>
   );

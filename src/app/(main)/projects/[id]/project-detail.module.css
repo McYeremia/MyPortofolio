@@ -1,0 +1,289 @@
+.page {
+  min-height: 100vh;
+  background: var(--bg-base);
+}
+
+/* ── Back ────────────────────────────────── */
+.backWrap {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem 2rem 0;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  letter-spacing: 0.03em;
+  transition: color 0.2s ease;
+}
+
+.back:hover {
+  color: var(--text-primary);
+}
+
+/* ── Hero ────────────────────────────────── */
+.hero {
+  border-bottom: 1px solid var(--border);
+  padding: 4rem 0 5rem;
+}
+
+.heroInner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  max-width: 720px;
+}
+
+.heroBadge {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.category {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.year {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: var(--border-strong);
+}
+
+.title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+}
+
+.description {
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+.heroLinks {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.linkBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.625rem 1.25rem;
+  border: 1px solid var(--border-strong);
+  color: var(--text-primary);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  border-radius: 3px;
+  transition: border-color 0.2s ease;
+}
+
+.linkBtn:hover {
+  border-color: var(--text-secondary);
+}
+
+.linkBtnPrimary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.625rem 1.25rem;
+  background: var(--text-primary);
+  color: var(--bg-base);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  border-radius: 3px;
+  transition: opacity 0.2s ease;
+}
+
+.linkBtnPrimary:hover {
+  opacity: 0.75;
+}
+
+/* ── Sections ────────────────────────────── */
+.sections {
+  border-bottom: 1px solid var(--border);
+}
+
+.section {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 5rem 2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.section:last-child {
+  border-bottom: none;
+}
+
+/* Layout 1 — with image */
+.sectionNormal,
+.sectionReversed {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+.sectionReversed .sectionText {
+  order: 2;
+}
+
+.sectionReversed .sectionImageWrap {
+  order: 1;
+}
+
+/* Layout 2 — plain */
+.sectionPlain {
+  max-width: 720px;
+}
+
+.sectionText {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sectionTitle {
+  font-size: 1.375rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+.sectionDesc {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+.sectionImageWrap {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  background: var(--bg-surface);
+}
+
+.sectionImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.sectionImageWrap:hover .sectionImage {
+  transform: scale(1.03);
+}
+
+/* ── Gallery ─────────────────────────────── */
+.gallery {
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border);
+  padding: 5rem 0;
+}
+
+.galleryInner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.galleryHeader {
+  margin-bottom: 2.5rem;
+}
+
+.galleryLabel {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.galleryItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.galleryImage {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 3px;
+  border: 1px solid var(--border);
+  display: block;
+  background: var(--bg-base);
+  transition: transform 0.3s ease;
+}
+
+.galleryImage:hover {
+  transform: scale(1.02);
+}
+
+.galleryCaption {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* ── Responsive ──────────────────────────── */
+@media (max-width: 1023px) {
+  .sectionNormal,
+  .sectionReversed {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .sectionReversed .sectionText {
+    order: unset;
+  }
+
+  .sectionReversed .sectionImageWrap {
+    order: unset;
+  }
+
+  .galleryGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .hero {
+    padding: 3rem 0 4rem;
+  }
+
+  .section {
+    padding: 3rem 2rem;
+  }
+
+  .galleryGrid {
+    grid-template-columns: 1fr;
+  }
+}
