@@ -2,10 +2,13 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { Sun, Moon } from "lucide-react";
+import { useTheme } from "@/context/ThemeContext";
 import styles from "./admin.module.css";
 
 export default function AdminLoginPage() {
   const router = useRouter();
+  const { theme, toggleTheme } = useTheme();
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -32,6 +35,14 @@ export default function AdminLoginPage() {
 
   return (
     <div className={styles.loginPage}>
+      <button
+        onClick={toggleTheme}
+        className={styles.loginThemeToggle}
+        aria-label="Toggle theme"
+      >
+        {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+      </button>
+
       <div className={styles.loginCard}>
         <div className={styles.loginHeader}>
           <span className={styles.loginBrand}>YEREMIA</span>

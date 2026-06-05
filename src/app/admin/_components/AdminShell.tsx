@@ -1,7 +1,8 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
-import { LayoutDashboard, User, FolderOpen, ExternalLink, LogOut } from "lucide-react";
+import { User, FolderOpen, ExternalLink, LogOut, Sun, Moon } from "lucide-react";
+import { useTheme } from "@/context/ThemeContext";
 import styles from "../admin.module.css";
 
 const navLinks = [
@@ -12,6 +13,7 @@ const navLinks = [
 export default function AdminShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
+  const { theme, toggleTheme } = useTheme();
 
   const handleLogout = async () => {
     await fetch("/api/admin/logout", { method: "POST" });
@@ -21,13 +23,23 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
   return (
     <div className={styles.shell}>
       <aside className={styles.sidebar}>
-        <span className={styles.sidebarBrand}>ADMIN PANEL</span>
+        <div className={styles.sidebarHeader}>
+          <span className={styles.sidebarBrand}>ADMIN PANEL</span>
+          <button
+            onClick={toggleTheme}
+            className={styles.themeToggle}
+            aria-label="Toggle theme"
+            title={theme === "dark" ? "Mode Terang" : "Mode Gelap"}
+          >
+            {theme === "dark" ? <Sun size={14} /> : <Moon size={14} />}
+          </button>
+        </div>
 
         {navLinks.map(({ href, label, icon: Icon }) => (
           <a
             key={href}
             href={href}
-            className={`${styles.sidebarLink} ${pathname === href ? styles.active : ""}`}
+            className={`${styles.sidebarLink} ${pathname === href || pathname.startsWith(href + "/") ? styles.active : ""}`}
           >
             <Icon size={15} />
             {label}
