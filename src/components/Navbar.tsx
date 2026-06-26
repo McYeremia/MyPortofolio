@@ -13,6 +13,7 @@ const links = [
 export default function Navbar() {
   const [active, setActive] = useState("#top");
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const linksRef = useRef<HTMLDivElement>(null);
   const indicatorRef = useRef<HTMLDivElement>(null);
@@ -23,6 +24,12 @@ export default function Navbar() {
     const container = linksRef.current;
     const indicator = indicatorRef.current;
     if (!container || !indicator) return;
+
+    // Hide indicator on mobile (links container hidden)
+    if (container.offsetParent === null) {
+      indicator.style.opacity = "0";
+      return;
+    }
 
     const idx = links.findIndex((l) => l.href === active);
     const el = linkEls.current[idx];
@@ -78,16 +85,24 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  /* Close menu on scroll */
+  useEffect(() => {
+    if (!menuOpen) return;
+    const close = () => setMenuOpen(false);
+    window.addEventListener("scroll", close, { passive: true });
+    return () => window.removeEventListener("scroll", close);
+  }, [menuOpen]);
+
   return (
     <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ""}`}>
       <div className={styles.pill}>
         <a href="#top" className={styles.brand}>
           {profile.initials}
         </a>
-        <div ref={linksRef} className={styles.links}>
-          {/* Sliding liquid glass indicator */}
-          <div ref={indicatorRef} className={styles.indicator} aria-hidden />
 
+        {/* Desktop links */}
+        <div ref={linksRef} className={styles.links}>
+          <div ref={indicatorRef} className={styles.indicator} aria-hidden />
           {links.map((link, i) => (
             <a
               key={link.label}
@@ -100,9 +115,43 @@ export default function Navbar() {
             </a>
           ))}
         </div>
+
         <a href="#contact" className={styles.cta}>
           <span className={styles.ctaLabel}>Get in touch</span>
           <span className={styles.ctaArrow}>→</span>
+        </a>
+
+        {/* Hamburger button (mobile only) */}
+        <button
+          className={`${styles.hamburger} ${menuOpen ? styles.hamburgerOpen : ""}`}
+          onClick={() => setMenuOpen((v) => !v)}
+          aria-label="Toggle menu"
+          aria-expanded={menuOpen}
+        >
+          <span className={styles.bar} />
+          <span className={styles.bar} />
+          <span className={styles.bar} />
+        </button>
+      </div>
+
+      {/* Mobile dropdown */}
+      <div className={`${styles.mobileMenu} ${menuOpen ? styles.mobileMenuOpen : ""}`}>
+        {links.map((link) => (
+          <a
+            key={link.label}
+            href={link.href}
+            className={`${styles.mobileLink} ${active === link.href ? styles.mobileLinkActive : ""}`}
+            onClick={() => setMenuOpen(false)}
+          >
+            {link.label}
+          </a>
+        ))}
+        <a
+          href="#contact"
+          className={styles.mobileCta}
+          onClick={() => setMenuOpen(false)}
+        >
+          Get in touch <span className={styles.ctaArrow}>→</span>
         </a>
       </div>
     </nav>

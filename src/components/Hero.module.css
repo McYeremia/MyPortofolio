@@ -6,14 +6,14 @@
   padding: 90px 20px 40px;
   display: grid;
   grid-template-columns: 0.92fr 1.08fr;
-  gap: 36px;
+  gap: 48px;
   align-items: center;
-  min-height: 72vh;
+  min-height: 92vh;
 }
 
 /* ---------- left: intro ---------- */
 .title {
-  font-size: clamp(34px, 4.3vw, 56px);
+  font-size: clamp(40px, 5vw, 64px);
   line-height: 1.08;
   font-weight: 700;
   letter-spacing: -0.025em;
@@ -23,7 +23,7 @@
 
 .greeting {
   display: block;
-  font-size: 0.42em;
+  font-size: 0.48em;
   font-weight: 500;
   color: var(--text-secondary);
   letter-spacing: 0;
@@ -31,18 +31,18 @@
 }
 
 .subtitle {
-  font-size: 21px;
+  font-size: 24px;
   line-height: 1.4;
   color: var(--text-secondary);
-  margin: 18px 0 0;
+  margin: 22px 0 0;
 }
 
 .lead {
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1.65;
   color: var(--text-secondary);
-  max-width: 430px;
-  margin: 22px 0 0;
+  max-width: 480px;
+  margin: 26px 0 0;
   text-wrap: pretty;
 }
 
@@ -53,25 +53,26 @@
 
 .actions {
   display: flex;
-  gap: 14px;
-  margin-top: 32px;
+  gap: 16px;
+  margin-top: 38px;
   flex-wrap: wrap;
 }
 
 .mono {
   font-family: var(--font-mono), monospace;
+  font-size: 11px;
 }
 
 .btnPrimary {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 15px 26px;
+  padding: 17px 30px;
   border-radius: 14px;
   background: var(--accent);
   color: #fff;
   font-weight: 600;
-  font-size: 15px;
+  font-size: 17px;
   box-shadow: 0 12px 30px rgba(30, 64, 255, 0.38);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
@@ -85,7 +86,7 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 15px 24px;
+  padding: 17px 28px;
   border-radius: 14px;
   background: rgba(255, 255, 255, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.7);
@@ -93,7 +94,7 @@
   -webkit-backdrop-filter: blur(14px);
   color: var(--text-primary);
   font-weight: 600;
-  font-size: 15px;
+  font-size: 17px;
   box-shadow: 0 8px 22px rgba(20, 40, 120, 0.1);
   transition: transform 0.25s ease;
 }
@@ -357,7 +358,7 @@
   .hero {
     grid-template-columns: 1fr;
     gap: 8px;
-    padding-top: 56px;
+    padding-top: 90px;
   }
   .visual {
     min-height: 420px;

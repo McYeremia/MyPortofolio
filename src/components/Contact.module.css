@@ -37,6 +37,14 @@
   margin-bottom: 14px;
 }
 
+.highlight {
+  color: var(--accent);
+  background: linear-gradient(90deg, var(--accent), #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 .lead {
   font-size: 16px;
   line-height: 1.7;
@@ -90,6 +98,11 @@
 
 .icon {
   flex-shrink: 0;
+  transition: fill 0.25s ease;
+}
+
+.link:hover .icon {
+  fill: var(--accent);
 }
 
 /* Footer */

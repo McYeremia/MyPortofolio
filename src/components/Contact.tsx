@@ -14,7 +14,7 @@ export default function Contact() {
   return (
     <section id="contact" className={styles.contact}>
       <div className={styles.card}>
-        <h2 className={styles.title}>Let&apos;s build something.</h2>
+        <h2 className={styles.title}>Let&apos;s build <span className={styles.highlight}>something.</span></h2>
         <p className={styles.lead}>
           I&apos;m open to internships, junior roles, and freelance work.
         </p>
@@ -34,7 +34,7 @@ export default function Contact() {
                 viewBox="0 0 24 24"
                 width="22"
                 height="22"
-                fill="var(--accent)"
+                fill="var(--text-primary)"
                 aria-hidden="true"
                 className={styles.icon}
               >
