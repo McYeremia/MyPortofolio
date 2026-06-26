@@ -1,75 +1,50 @@
-"use client";
-
-import { motion } from "framer-motion";
+import { projects, allProjectsUrl } from "@/content/portfolio";
 import styles from "./Projects.module.css";
 
-interface Project {
-  id: number;
-  title: string;
-  category: string;
-  year: string;
-  thumbnailUrl?: string | null;
-}
-
-interface ProjectsProps {
-  data: Project[];
-}
-
-const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
-
-const DEFAULT_PROJECTS: Project[] = [
-  { id: 1, title: "Neural Network Viz", category: "Data Visualization", year: "2024" },
-  { id: 2, title: "Quantum Ledger", category: "Fintech / Web3", year: "2024" },
-  { id: 3, title: "Cyber-Security OS", category: "Security Tool", year: "2023" },
-];
-
-export default function Projects({ data }: ProjectsProps) {
-  const projects = data.length > 0 ? data : DEFAULT_PROJECTS;
-
+export default function Projects() {
   return (
     <section id="projects" className={styles.projects}>
-      <div className={styles.container}>
-        <motion.div
-          className={styles.header}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.55, ease: EASE }}
-        >
-          <span className={styles.sublabel}>03 — SELECTED WORKS</span>
-          <h2 className={styles.title}>Projects</h2>
-        </motion.div>
-
-        <div className={styles.grid}>
-          {projects.map((project, index) => (
-            <motion.a
-              key={project.id}
-              href={`/projects/${project.id}`}
-              className={styles.card}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.55, delay: index * 0.08, ease: EASE }}
-            >
-              <div className={styles.thumbnail}>
-                {project.thumbnailUrl && (
-                  <img
-                    src={project.thumbnailUrl}
-                    alt={project.title}
-                    className={styles.thumbnailImg}
-                  />
-                )}
-              </div>
-              <div className={styles.cardMeta}>
-                <div className={styles.cardInfo}>
-                  <span className={styles.projectName}>{project.title}</span>
-                  <span className={styles.projectCategory}>{project.category}</span>
-                </div>
-                <span className={styles.projectYear}>{project.year}</span>
-              </div>
-            </motion.a>
-          ))}
+      <div className={styles.header}>
+        <div>
+          <h2 className={styles.title}>Latest projects</h2>
+          <p className={styles.intro}>Some of the most recent things I&apos;ve built.</p>
         </div>
+      </div>
+
+      <div className={styles.grid}>
+        {projects.map((p) => (
+          <a
+            key={p.title}
+            href={p.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.card}
+          >
+            <div className={styles.thumb}>
+              <span className={styles.thumbLabel}>{p.thumb}</span>
+            </div>
+            <div className={styles.cardBody}>
+              <div>
+                <div className={styles.tag}>{p.tag}</div>
+                <h3 className={styles.cardTitle}>{p.title}</h3>
+                <p className={styles.desc}>{p.desc}</p>
+              </div>
+              <span className={styles.arrow}>↗</span>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <div className={styles.allWrap}>
+        <a
+          href={allProjectsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.allBtn}
+        >
+          See all projects
+          <span className={styles.allArrow}>→</span>
+        </a>
       </div>
     </section>
   );

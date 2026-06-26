@@ -1,0 +1,99 @@
+.skills {
+  position: relative;
+  z-index: 10;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 30px 20px 70px;
+}
+
+.title {
+  font-size: clamp(28px, 3.6vw, 44px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 10px;
+  color: var(--text-primary);
+}
+
+.intro {
+  font-size: 16px;
+  color: var(--text-muted);
+  margin: 0 0 30px;
+  max-width: 520px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  min-height: 240px;
+  padding: 34px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.48);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid var(--glass-bg-strong);
+  box-shadow: 0 12px 36px rgba(20, 40, 120, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.cardHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.cardTitle {
+  font-size: 23px;
+  font-weight: 600;
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.cardTag {
+  font-family: var(--font-mono), monospace;
+  font-size: 13px;
+  color: var(--accent);
+}
+
+.items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 15px;
+  border-radius: 12px;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-border);
+  font-size: 15px;
+  color: #2a3556;
+}
+
+.dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+@media (max-width: 720px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .card {
+    min-height: 0;
+    padding: 28px;
+  }
+}
