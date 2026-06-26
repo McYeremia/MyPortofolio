@@ -8,9 +8,9 @@
   --text-secondary: #39456b;
   --text-muted: #7884a6;
 
-  --glass-bg: rgba(255, 255, 255, 0.5);
-  --glass-bg-strong: rgba(255, 255, 255, 0.6);
-  --glass-border: rgba(255, 255, 255, 0.65);
+  --glass-bg: rgba(255, 255, 255, 0.72);
+  --glass-bg-strong: rgba(255, 255, 255, 0.82);
+  --glass-border: rgba(255, 255, 255, 0.75);
   --glass-shadow: 0 14px 44px rgba(20, 40, 120, 0.12);
   --glass-inset: inset 0 1px 0 rgba(255, 255, 255, 0.85);
 

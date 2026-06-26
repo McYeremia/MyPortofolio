@@ -33,7 +33,7 @@
   min-height: 240px;
   padding: 34px;
   border-radius: 24px;
-  background: rgba(255, 255, 255, 0.48);
+  background: var(--glass-bg);
   backdrop-filter: blur(12px) saturate(155%);
   -webkit-backdrop-filter: blur(12px) saturate(155%);
   border: 1px solid var(--glass-bg-strong);
