@@ -41,9 +41,17 @@
   font-size: 16px;
   line-height: 1.7;
   color: var(--text-secondary);
-  max-width: 420px;
-  text-wrap: pretty;
-  margin-bottom: 36px;
+  max-width: 460px;
+  text-wrap: balance;
+  margin-bottom: 18px;
+}
+
+.findMe {
+  font-family: var(--font-mono), monospace;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  margin-bottom: 28px;
 }
 
 /* Link row */
@@ -57,26 +65,27 @@
 .link {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 14px 24px;
-  border-radius: 16px;
+  justify-content: center;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
   background: var(--glass-bg-strong);
   border: 1px solid var(--glass-border);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   box-shadow: 0 6px 20px rgba(20, 40, 120, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  font-size: 14px;
-  font-weight: 500;
   color: var(--text-primary);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease,
+    background 0.25s ease;
   cursor: pointer;
 }
 
 .link:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 28px rgba(20, 40, 120, 0.14),
-    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 14px 30px rgba(30, 64, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
 .icon {
@@ -102,14 +111,5 @@
   .card {
     padding: 48px 24px 40px;
     border-radius: 22px;
-  }
-
-  .links {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .link {
-    justify-content: center;
   }
 }

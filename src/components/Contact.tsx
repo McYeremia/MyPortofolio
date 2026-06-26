@@ -16,8 +16,9 @@ export default function Contact() {
       <div className={styles.card}>
         <h2 className={styles.title}>Let&apos;s build something.</h2>
         <p className={styles.lead}>
-          Have an idea or an opportunity? Reach out. Replace these with your own links.
+          I&apos;m open to internships, junior roles, and freelance work.
         </p>
+        <p className={styles.findMe}>Find me here:</p>
         <div className={styles.links}>
           {contacts.map((c) => (
             <a
@@ -26,25 +27,24 @@ export default function Contact() {
               target={c.url.startsWith("mailto:") ? undefined : "_blank"}
               rel="noopener noreferrer"
               className={styles.link}
+              aria-label={c.label}
+              title={c.label}
             >
               <svg
                 viewBox="0 0 24 24"
-                width="18"
-                height="18"
+                width="22"
+                height="22"
                 fill="var(--accent)"
                 aria-hidden="true"
                 className={styles.icon}
               >
                 <path d={ICON_PATHS[c.icon]} />
               </svg>
-              {c.label}
             </a>
           ))}
         </div>
       </div>
-      <p className={styles.footer}>
-        © 2026 {profile.name} — built with liquid glass.
-      </p>
+      <p className={styles.footer}>© 2026 {profile.name}</p>
     </section>
   );
 }

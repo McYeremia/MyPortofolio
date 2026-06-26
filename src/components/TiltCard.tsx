@@ -4,27 +4,27 @@ import { useRef, type ReactNode } from "react";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
 type TiltCardProps = {
-  href: string;
   className?: string;
   children: ReactNode;
 };
 
 /**
- * Anchor that tilts toward the pointer for a subtle 3D hover.
- * Falls back to a plain link when reduced motion is requested.
+ * Container that tilts toward the pointer for a subtle 3D hover.
+ * Renders a div so it can hold its own links/buttons. Falls back to a
+ * static container when reduced motion is requested.
  */
-export default function TiltCard({ href, className, children }: TiltCardProps) {
-  const ref = useRef<HTMLAnchorElement>(null);
+export default function TiltCard({ className, children }: TiltCardProps) {
+  const ref = useRef<HTMLDivElement>(null);
   const reduce = usePrefersReducedMotion();
 
-  const handleMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const el = ref.current;
     if (!el) return;
     const r = el.getBoundingClientRect();
     const px = (e.clientX - r.left) / r.width - 0.5;
     const py = (e.clientY - r.top) / r.height - 0.5;
-    el.style.transform = `perspective(900px) rotateX(${-py * 7}deg) rotateY(${
-      px * 7
+    el.style.transform = `perspective(900px) rotateX(${-py * 6}deg) rotateY(${
+      px * 6
     }deg) translateY(-6px)`;
   };
 
@@ -34,16 +34,13 @@ export default function TiltCard({ href, className, children }: TiltCardProps) {
   };
 
   return (
-    <a
+    <div
       ref={ref}
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
       className={className}
       onMouseMove={reduce ? undefined : handleMove}
       onMouseLeave={reduce ? undefined : handleLeave}
     >
       {children}
-    </a>
+    </div>
   );
 }

@@ -39,6 +39,14 @@
   border: 1px solid var(--glass-bg-strong);
   box-shadow: 0 12px 36px rgba(20, 40, 120, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease, box-shadow 0.3s ease;
+  will-change: transform;
+}
+
+.card:hover {
+  box-shadow: 0 22px 50px rgba(30, 64, 255, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
 .cardHead {
@@ -79,6 +87,17 @@
   border: 1px solid var(--accent-border);
   font-size: 15px;
   color: #2a3556;
+  cursor: default;
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease,
+    border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.item:hover {
+  transform: translateY(-3px);
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(30, 64, 255, 0.32);
 }
 
 .dot {
@@ -86,6 +105,104 @@
   height: 5px;
   border-radius: 50%;
   background: var(--accent);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.item:hover .dot {
+  background: #fff;
+  transform: scale(1.6);
+}
+
+/* ---------- floating tool logos ---------- */
+/* The board wraps the grid so logos can be positioned around its edges. */
+.board {
+  position: relative;
+  margin-top: 16px;
+  /* padding ring gives the floating logos room around the grid */
+  padding: 42px 58px;
+}
+
+/* No backdrop-filter: these drift continuously, so an animated blur would be
+   expensive. A solid translucent fill keeps the glass look cheaply. */
+.logoLayer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.logoChip {
+  position: absolute;
+  width: 52px;
+  height: 52px;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 10px 26px rgba(20, 40, 120, 0.14);
+  will-change: transform;
+}
+
+.logoChip img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.driftA {
+  animation: driftA 9s ease-in-out infinite;
+}
+.driftB {
+  animation: driftB 11s ease-in-out infinite;
+}
+.driftC {
+  animation: driftC 10s ease-in-out infinite;
+}
+.driftD {
+  animation: driftD 12s ease-in-out infinite;
+}
+
+@keyframes driftA {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(-3deg);
+  }
+  33% {
+    transform: translate(12px, -16px) rotate(3deg);
+  }
+  66% {
+    transform: translate(-8px, -6px) rotate(-1deg);
+  }
+}
+@keyframes driftB {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(2deg);
+  }
+  50% {
+    transform: translate(-14px, 14px) rotate(-3deg);
+  }
+}
+@keyframes driftC {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(-1deg);
+  }
+  50% {
+    transform: translate(16px, 12px) rotate(3deg);
+  }
+}
+@keyframes driftD {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(1deg);
+  }
+  50% {
+    transform: translate(-16px, -12px) rotate(-2deg);
+  }
 }
 
 @media (max-width: 720px) {
@@ -95,5 +212,13 @@
   .card {
     min-height: 0;
     padding: 28px;
+  }
+  /* On phones the single-column grid needs the full width, so the decorative
+     logos are hidden (the cards already list every tool as text). */
+  .board {
+    padding: 0;
+  }
+  .logoLayer {
+    display: none;
   }
 }

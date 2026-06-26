@@ -2,9 +2,9 @@ import { profile } from "@/content/portfolio";
 import styles from "./Navbar.module.css";
 
 const links = [
-  { label: "home", href: "#top" },
-  { label: "about", href: "#about" },
-  { label: "projects", href: "#projects" },
+  { label: "HOME", href: "#top" },
+  { label: "ABOUT", href: "#about" },
+  { label: "PROJECTS", href: "#projects" },
 ];
 
 export default function Navbar() {

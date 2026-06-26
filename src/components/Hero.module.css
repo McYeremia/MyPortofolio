@@ -260,18 +260,20 @@
 }
 
 /* ---------- floating chips ---------- */
+/* No backdrop-filter here on purpose: these chips move continuously, and an
+   animated blur is expensive to recompute every frame. A slightly more opaque
+   fill keeps the frosted look while staying cheap. */
 .chip {
   position: absolute;
   padding: 11px 16px;
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.55);
-  backdrop-filter: blur(13px) saturate(150%);
-  -webkit-backdrop-filter: blur(13px) saturate(150%);
-  border: 1px solid rgba(255, 255, 255, 0.75);
-  box-shadow: 0 10px 26px rgba(20, 40, 120, 0.14);
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 10px 26px rgba(20, 40, 120, 0.16);
   font-family: var(--font-mono), monospace;
   font-size: 13px;
   color: var(--text-primary);
+  will-change: transform;
 }
 
 .chipAccent {
@@ -281,25 +283,73 @@
 .chipTL {
   top: 30px;
   left: 0;
-  animation: floaty2 6.5s ease-in-out infinite;
+  animation: driftA 9s ease-in-out infinite;
 }
 
 .chipTR {
   top: 34px;
   right: 6px;
-  animation: floaty 6s ease-in-out infinite;
+  animation: driftB 11s ease-in-out infinite;
 }
 
 .chipBL {
   bottom: 42px;
   left: 0;
-  animation: floaty2 7s ease-in-out infinite;
+  animation: driftC 10s ease-in-out infinite;
 }
 
 .chipBR {
   bottom: 38px;
   right: 6px;
-  animation: floaty 7.5s ease-in-out infinite;
+  animation: driftD 12s ease-in-out infinite;
+}
+
+/* Each chip drifts on its own gentle 2D loop with a little rotation so the
+   group feels alive without moving in sync. Transform-only = GPU-cheap. */
+@keyframes driftA {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(-2deg);
+  }
+  33% {
+    transform: translate(16px, -20px) rotate(2deg);
+  }
+  66% {
+    transform: translate(-10px, -8px) rotate(-1deg);
+  }
+}
+
+@keyframes driftB {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(2deg);
+  }
+  33% {
+    transform: translate(-18px, 14px) rotate(-2deg);
+  }
+  66% {
+    transform: translate(9px, 22px) rotate(1deg);
+  }
+}
+
+@keyframes driftC {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(-1deg);
+  }
+  50% {
+    transform: translate(20px, 16px) rotate(3deg);
+  }
+}
+
+@keyframes driftD {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(1deg);
+  }
+  50% {
+    transform: translate(-20px, -16px) rotate(-3deg);
+  }
 }
 
 /* ---------- responsive ---------- */
