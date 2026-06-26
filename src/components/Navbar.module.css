@@ -1,63 +1,202 @@
+/* ─── entrance animation ─── */
+@keyframes navSlideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-24px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes linkFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ─── liquid glass sheen ─── */
+@keyframes glassSheen {
+  0% {
+    transform: translateX(-200%) skewX(-20deg);
+  }
+  100% {
+    transform: translateX(350%) skewX(-20deg);
+  }
+}
+
+@keyframes glassGlow {
+  0%, 100% {
+    box-shadow:
+      0 2px 12px rgba(30, 64, 255, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.7),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    box-shadow:
+      0 4px 16px rgba(30, 64, 255, 0.22),
+      inset 0 1px 0 rgba(255, 255, 255, 0.85),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.35);
+  }
+}
+
+/* ─── nav container ─── */
 .nav {
-  position: sticky;
+  position: fixed;
   top: 18px;
+  left: 0;
+  right: 0;
   z-index: 50;
   width: calc(100% - 40px);
   max-width: var(--maxw);
-  margin: 18px auto 0;
+  margin: 0 auto;
+  animation: navSlideDown 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  transition: top 0.35s ease;
+}
+
+.nav.scrolled {
+  top: 12px;
 }
 
 .pill {
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 12px 18px;
+  justify-content: space-between;
+  padding: 10px 14px 10px 22px;
   border-radius: 18px;
   background: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(13px) saturate(160%);
   -webkit-backdrop-filter: blur(13px) saturate(160%);
   border: 1px solid var(--glass-border);
   box-shadow: 0 10px 36px rgba(20, 40, 120, 0.12), var(--glass-inset);
+  transition: padding 0.35s ease, border-radius 0.35s ease,
+    box-shadow 0.35s ease, background 0.35s ease;
 }
 
+.scrolled .pill {
+  padding: 8px 14px 8px 22px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.62);
+  box-shadow: 0 6px 28px rgba(20, 40, 120, 0.16), var(--glass-inset);
+}
+
+/* ─── brand ─── */
 .brand {
-  position: absolute;
-  left: 22px;
-  top: 50%;
-  transform: translateY(-50%);
+  flex-shrink: 0;
   font-family: var(--font-mono), monospace;
-  font-weight: 600;
-  font-size: 14px;
-  letter-spacing: 0.02em;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.04em;
   color: var(--accent);
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
+.brand:hover {
+  transform: scale(1.1);
+  color: #3355ff;
+}
+
+/* ─── links wrapper ─── */
 .links {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   font-family: var(--font-mono), monospace;
   font-size: 13px;
 }
 
+/* ─── sliding liquid glass indicator ─── */
+.indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 10px;
+  pointer-events: none;
+  opacity: 0;
+
+  /* Liquid glass look */
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.6),
+    rgba(200, 215, 255, 0.35),
+    rgba(255, 255, 255, 0.5)
+  );
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  animation: glassGlow 3s ease-in-out infinite;
+  overflow: hidden;
+
+  /* Smooth slide transition */
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    width 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    height 0.35s ease,
+    opacity 0.3s ease;
+}
+
+/* Sheen sweep on the indicator */
+.indicator::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 45%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.55),
+    rgba(200, 220, 255, 0.25),
+    transparent
+  );
+  transform: translateX(-200%) skewX(-20deg);
+  animation: glassSheen 4s ease-in-out infinite;
+  pointer-events: none;
+  border-radius: 8px;
+}
+
+/* ─── individual link ─── */
 .link {
-  padding: 8px 12px;
+  position: relative;
+  padding: 8px 14px;
   border-radius: 10px;
   color: var(--text-secondary);
-  transition: background 0.2s ease, color 0.2s ease;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  transition: color 0.3s ease, letter-spacing 0.3s ease;
+  animation: linkFadeIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(0.15s + var(--i) * 0.08s);
+  z-index: 1;
+}
+
+.linkText {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
 }
 
 .link:hover {
-  background: var(--accent-soft);
   color: var(--accent);
 }
 
+/* Active link — just color, the indicator handles the glass background */
+.linkActive {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ─── CTA button ─── */
 .cta {
-  position: absolute;
-  right: 14px;
-  top: 50%;
-  transform: translateY(-50%);
+  flex-shrink: 0;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -69,18 +208,58 @@
   font-size: 13px;
   font-weight: 500;
   box-shadow: 0 6px 18px rgba(30, 64, 255, 0.35);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.25s ease, gap 0.3s ease;
+  overflow: hidden;
+  position: relative;
+  animation: linkFadeIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.6s both;
+}
+
+.cta::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transform: translateX(-180%) skewX(-18deg);
+  transition: transform 0.6s ease;
 }
 
 .cta:hover {
-  transform: translateY(-50%) translateY(-1px);
-  box-shadow: 0 10px 24px rgba(30, 64, 255, 0.45);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(30, 64, 255, 0.48);
+  gap: 12px;
+}
+
+.cta:hover::before {
+  transform: translateX(360%) skewX(-18deg);
+}
+
+.ctaLabel {
+  position: relative;
+  z-index: 1;
 }
 
 .ctaArrow {
-  font-size: 14px;
+  font-size: 15px;
+  display: inline-block;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  z-index: 1;
 }
 
+.cta:hover .ctaArrow {
+  transform: translateX(3px);
+}
+
+/* ─── responsive ─── */
 @media (max-width: 720px) {
   .links {
     display: none;

@@ -3,7 +3,7 @@
   z-index: 10;
   max-width: var(--maxw);
   margin: 0 auto;
-  padding: 72px 20px 40px;
+  padding: 90px 20px 40px;
   display: grid;
   grid-template-columns: 0.92fr 1.08fr;
   gap: 36px;

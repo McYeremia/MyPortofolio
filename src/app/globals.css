@@ -61,9 +61,13 @@ img {
 #top,
 #about,
 #skills,
-#projects,
 #contact {
   scroll-margin-top: 110px;
+}
+
+/* Projects gets a tighter offset so clicking the nav link scrolls closer */
+#projects {
+  scroll-margin-top: 60px;
 }
 
 /* Scrollbar */
