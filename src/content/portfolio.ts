@@ -32,6 +32,8 @@ export const profile = {
   initials: "YCW",
   /** highlighted phrase in the hero intro */
   focus: "fullstack development",
+  /** rotating role labels cycled in the hero */
+  roles: ["Fullstack Developer", "Web3 Explorer", "Problem Solver"],
   /** optional path to a hero photo placed in /public; null shows a placeholder */
   photo: null as string | null,
 };

@@ -9,6 +9,7 @@
 .blob {
   position: absolute;
   border-radius: 50%;
+  will-change: transform;
 }
 
 .blobOne {
@@ -21,7 +22,7 @@
     rgba(30, 64, 255, 0.45),
     rgba(30, 64, 255, 0) 70%
   );
-  filter: blur(40px);
+  filter: blur(28px);
   animation: blobA 18s ease-in-out infinite;
 }
 
@@ -35,7 +36,7 @@
     rgba(59, 130, 246, 0.4),
     rgba(59, 130, 246, 0) 70%
   );
-  filter: blur(50px);
+  filter: blur(32px);
   animation: blobB 22s ease-in-out infinite;
 }
 
@@ -49,7 +50,7 @@
     rgba(99, 102, 241, 0.3),
     rgba(99, 102, 241, 0) 70%
   );
-  filter: blur(48px);
+  filter: blur(30px);
   animation: blobA 26s ease-in-out infinite;
 }
 

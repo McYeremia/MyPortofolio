@@ -2,34 +2,52 @@
 
 import { useEffect, useRef } from "react";
 import { profile } from "@/content/portfolio";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import styles from "./Hero.module.css";
 
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null);
   const wrapRef = useRef<HTMLDivElement>(null);
+  const reduce = usePrefersReducedMotion();
 
   useEffect(() => {
     const hero = heroRef.current;
     const wrap = wrapRef.current;
     if (!hero || !wrap) return;
+    // Skip the parallax on touch / coarse pointers and reduced motion.
+    if (reduce || !window.matchMedia("(pointer: fine)").matches) return;
 
-    const onMove = (e: MouseEvent) => {
+    let raf = 0;
+    let lastX = 0;
+    let lastY = 0;
+
+    const apply = () => {
+      raf = 0;
       const r = hero.getBoundingClientRect();
-      const px = (e.clientX - r.left) / r.width - 0.5;
-      const py = (e.clientY - r.top) / r.height - 0.5;
+      const px = (lastX - r.left) / r.width - 0.5;
+      const py = (lastY - r.top) / r.height - 0.5;
       wrap.style.transform = `rotateX(${-py * 20}deg) rotateY(${px * 20}deg)`;
     };
+
+    const onMove = (e: MouseEvent) => {
+      lastX = e.clientX;
+      lastY = e.clientY;
+      if (!raf) raf = requestAnimationFrame(apply);
+    };
     const onLeave = () => {
+      if (raf) cancelAnimationFrame(raf);
+      raf = 0;
       wrap.style.transform = "rotateX(0deg) rotateY(0deg)";
     };
 
     hero.addEventListener("mousemove", onMove);
     hero.addEventListener("mouseleave", onLeave);
     return () => {
+      if (raf) cancelAnimationFrame(raf);
       hero.removeEventListener("mousemove", onMove);
       hero.removeEventListener("mouseleave", onLeave);
     };
-  }, []);
+  }, [reduce]);
 
   return (
     <section ref={heroRef} id="top" className={styles.hero}>

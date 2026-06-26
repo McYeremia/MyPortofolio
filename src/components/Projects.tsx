@@ -1,4 +1,5 @@
 import { projects, allProjectsUrl } from "@/content/portfolio";
+import TiltCard from "./TiltCard";
 import styles from "./Projects.module.css";
 
 export default function Projects() {
@@ -13,13 +14,7 @@ export default function Projects() {
 
       <div className={styles.grid}>
         {projects.map((p) => (
-          <a
-            key={p.title}
-            href={p.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.card}
-          >
+          <TiltCard key={p.title} href={p.url} className={styles.card}>
             <div className={styles.thumb}>
               <span className={styles.thumbLabel}>{p.thumb}</span>
             </div>
@@ -31,7 +26,7 @@ export default function Projects() {
               </div>
               <span className={styles.arrow}>↗</span>
             </div>
-          </a>
+          </TiltCard>
         ))}
       </div>
 

@@ -100,8 +100,8 @@ img {
   50% { transform: rotateY(9deg) rotateX(-2deg); }
 }
 @keyframes sheen {
-  0% { left: -60%; }
-  55%, 100% { left: 135%; }
+  0% { transform: translateX(-180%) skewX(-18deg); }
+  55%, 100% { transform: translateX(360%) skewX(-18deg); }
 }
 
 @media (prefers-reduced-motion: reduce) {
