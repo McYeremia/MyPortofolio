@@ -16,7 +16,7 @@ export default function Contact() {
       <div className={styles.card}>
         <h2 className={styles.title}>Let&apos;s build something.</h2>
         <p className={styles.lead}>
-          Have an idea or an opportunity? Reach out.
+          Have an idea or an opportunity? Reach out. Replace these with your own links.
         </p>
         <div className={styles.links}>
           {contacts.map((c) => (

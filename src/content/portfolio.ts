@@ -100,8 +100,8 @@ export const projects: ProjectCard[] = [
 export const allProjectsUrl = "#";
 
 export const contacts: ContactLink[] = [
-  { label: "yeremia.christopher@gmail.com", url: "mailto:yeremia.christopher@gmail.com", icon: "mail" },
-  { label: "github.com/you", url: "#", icon: "github" },
+  { label: "you@email.com", url: "mailto:yeremia.christopher@gmail.com", icon: "mail" },
+  { label: "github.com/you", url: "https://github.com/McYeremia", icon: "github" },
   { label: "linkedin.com/in/you", url: "#", icon: "linkedin" },
   { label: "@you", url: "#", icon: "x" },
 ];
