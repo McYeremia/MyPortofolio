@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef, useCallback } from "react";
+import { usePathname } from "next/navigation";
 import { profile } from "@/content/portfolio";
 import styles from "./Navbar.module.css";
 
@@ -11,6 +12,14 @@ const links = [
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const onHome = pathname === "/";
+  /* On sub-pages the in-page anchors don't exist, so route to "/" first. */
+  const resolve = useCallback(
+    (hash: string) => (onHome ? hash : `/${hash}`),
+    [onHome]
+  );
+
   const [active, setActive] = useState("#top");
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -96,7 +105,7 @@ export default function Navbar() {
   return (
     <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ""}`}>
       <div className={styles.pill}>
-        <a href="#top" className={styles.brand}>
+        <a href={resolve("#top")} className={styles.brand}>
           {profile.initials}
         </a>
 
@@ -106,7 +115,7 @@ export default function Navbar() {
           {links.map((link, i) => (
             <a
               key={link.label}
-              href={link.href}
+              href={resolve(link.href)}
               ref={(el) => { linkEls.current[i] = el; }}
               className={`${styles.link} ${active === link.href ? styles.linkActive : ""}`}
               style={{ "--i": i } as React.CSSProperties}
