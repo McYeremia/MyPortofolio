@@ -112,14 +112,13 @@ export const projects: ProjectCard[] = [
     repo: "https://github.com/McYeremia/verifiedagentrecords",
   },
   {
-    tag: "FULLSTACK",
-    title: "Project Three",
-    desc: "Short description of what this project does. Edit me.",
+    tag: "FULLSTACK · AI · FINTECH",
+    title: "IDXAnalyst",
+    desc: "AI-powered Indonesian stock trading terminal that pits your manual strategy against Gemini and Claude AI in a portfolio battleground. Features 10 back-tested quant algorithms, techno-fundamental intelligence, and MCP integration for autonomous AI trading.",
     thumb: "[ replace screenshot ]",
-    image: null,
-    tech: ["React", "Node.js", "Prisma"],
-    live: "#",
-    repo: "#",
+    image: "/projects/idxanalyst.png",
+    tech: ["Next.js", "FastAPI", "Tailwind", "Gemini / Claude AI"],
+    repo: "https://github.com/McYeremia/IDXAnalyst",
   },
 ];
 
