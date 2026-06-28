@@ -125,9 +125,9 @@ export default function Navbar() {
           ))}
         </div>
 
-        <a href="#contact" className={styles.cta}>
+        <a href={resolve("#contact")} className={styles.cta}>
           <span className={styles.ctaLabel}>Get in touch</span>
-          <span className={styles.ctaArrow}>→</span>
+          <span className={styles.ctaArrow}>›</span>
         </a>
 
         {/* Hamburger button (mobile only) */}
@@ -148,7 +148,7 @@ export default function Navbar() {
         {links.map((link) => (
           <a
             key={link.label}
-            href={link.href}
+            href={resolve(link.href)}
             className={`${styles.mobileLink} ${active === link.href ? styles.mobileLinkActive : ""}`}
             onClick={() => setMenuOpen(false)}
           >
@@ -156,11 +156,11 @@ export default function Navbar() {
           </a>
         ))}
         <a
-          href="#contact"
+          href={resolve("#contact")}
           className={styles.mobileCta}
           onClick={() => setMenuOpen(false)}
         >
-          Get in touch <span className={styles.ctaArrow}>→</span>
+          Get in touch <span className={styles.ctaArrow}>›</span>
         </a>
       </div>
     </nav>

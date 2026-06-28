@@ -17,7 +17,7 @@ export default function ProjectsPage() {
       <AmbientBackground />
       <div className={styles.inner}>
         <Link href="/#projects" className={styles.back}>
-          <span aria-hidden="true">←</span> Back to home
+          <span className={styles.backArrow} aria-hidden="true">‹</span> Back to home
         </Link>
 
         <header className={styles.head}>

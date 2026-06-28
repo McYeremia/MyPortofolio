@@ -248,7 +248,8 @@
 }
 
 .ctaArrow {
-  font-size: 11px;
+  font-size: 15px;
+  line-height: 1;
   display: inline-block;
   transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
   position: relative;
