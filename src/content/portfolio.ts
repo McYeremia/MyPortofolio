@@ -43,8 +43,10 @@ export const profile = {
   focus: "fullstack development",
   /** rotating role labels cycled in the hero */
   roles: ["Fullstack Developer", "Web3 Explorer", "Problem Solver"],
-  /** optional path to a hero photo placed in /public; null shows a placeholder */
-  photo: null as string | null,
+  /** optional path to the centered hero photo placed in /public; null shows a placeholder */
+  photo: "/gugel.jpeg" as string | null,
+  /** the two faint photos on the side glass panels [left, right] */
+  heroSidePhotos: ["/sindoro.jpeg", "/lawu.jpeg"],
 };
 
 export const about = {
@@ -63,7 +65,7 @@ export const skills: SkillCategory[] = [
   {
     tag: "~/backend",
     title: "Backend",
-    items: ["Node.js / Express", "Python", "PHP", "PostgreSQL", "REST APIs"],
+    items: ["Node.js / Express", "Python", "PHP", "MySQL", "REST APIs"],
   },
   {
     tag: "~/web3",
@@ -79,25 +81,35 @@ export const skills: SkillCategory[] = [
 
 export const projects: ProjectCard[] = [
   {
-    tag: "WEB3 · STELLAR",
+    tag: "WEB3 · STELLAR · HACKATHON",
     title: "SettleZK",
     desc: "Private settlement on Stellar: companies see only the net difference they owe each other, never each invoice. A zero-knowledge proof shows the math is honest without ever revealing who owes whom.",
     thumb: "[ replace screenshot ]",
     image: "/projects/settlezk.png",
-    tech: ["Next.js", "Stellar", "Zero-Knowledge"],
+    tech: ["Next.js", "Stellar / Soroban", "Circom", "Groth16 ZK"],
     live: "https://settlezk.vercel.app",
-    repo: "#",
+    repo: "https://github.com/McYeremia/settlezk",
     featured: true,
   },
   {
-    tag: "WEB3 · INTERNET COMPUTER",
+    tag: "WEB3 · TEE · HACKATHON",
     title: "TrustDrop",
     desc: "Aid that can't be skimmed, faked, or leaked. Eligibility is verified by AI while identity stays sealed inside a secure enclave, and every disbursement is permanently audited on-chain.",
     thumb: "[ replace screenshot ]",
     image: "/projects/trustdrop.png",
-    tech: ["Internet Computer", "Enclave", "Web3"],
+    tech: ["Next.js", "Rust / WASM", "TEE Enclave", "Groq AI"],
     live: "https://trustdrop26.vercel.app",
-    repo: "#",
+    repo: "https://github.com/McYeremia/TrustDrop",
+  },
+  {
+    tag: "WEB3 · SUI · HACKATHON",
+    title: "Verified Agent Records",
+    desc: "Verified Agent Records: a tamper-proof ledger for AI agent activity. Every action an agent takes is recorded and cryptographically verifiable, so you can audit what an autonomous agent actually did, not just what it claims.",
+    thumb: "[ replace screenshot ]",
+    image: "/projects/varwc.png",
+    tech: ["Next.js", "Sui", "Walrus Memory", "Groq AI"],
+    live: "https://varwc2026.vercel.app",
+    repo: "https://github.com/McYeremia/verifiedagentrecords",
   },
   {
     tag: "FULLSTACK",
@@ -106,16 +118,6 @@ export const projects: ProjectCard[] = [
     thumb: "[ replace screenshot ]",
     image: null,
     tech: ["React", "Node.js", "Prisma"],
-    live: "#",
-    repo: "#",
-  },
-  {
-    tag: "API · NODE",
-    title: "Project Four",
-    desc: "Short description of what this project does. Edit me.",
-    thumb: "[ replace screenshot ]",
-    image: null,
-    tech: ["Express", "REST", "Docker"],
     live: "#",
     repo: "#",
   },

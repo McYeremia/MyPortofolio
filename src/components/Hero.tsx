@@ -80,10 +80,28 @@ export default function Hero() {
         <div className={styles.perspective}>
           <div ref={wrapRef} className={styles.wrap}>
             <div className={`${styles.sheet} ${styles.sheetLeft}`}>
-              <div className={styles.sheetInner} />
+              <div className={styles.sheetInner}>
+                {profile.heroSidePhotos?.[0] ? (
+                  <img
+                    src={profile.heroSidePhotos[0]}
+                    alt=""
+                    aria-hidden="true"
+                    className={`${styles.sheetPhoto} ${styles.sheetPhotoLeft}`}
+                  />
+                ) : null}
+              </div>
             </div>
             <div className={`${styles.sheet} ${styles.sheetRight}`}>
-              <div className={styles.sheetInner} />
+              <div className={styles.sheetInner}>
+                {profile.heroSidePhotos?.[1] ? (
+                  <img
+                    src={profile.heroSidePhotos[1]}
+                    alt=""
+                    aria-hidden="true"
+                    className={`${styles.sheetPhoto} ${styles.sheetPhotoRight}`}
+                  />
+                ) : null}
+              </div>
             </div>
             <div className={styles.cardCenter}>
               <div className={styles.card}>

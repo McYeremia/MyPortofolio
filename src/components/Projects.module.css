@@ -211,8 +211,16 @@
 /* ---------- actions ---------- */
 .actions {
   display: flex;
+  align-items: center;
   gap: 10px;
   margin-top: 6px;
+}
+
+/* in grid cards, pin the buttons to the bottom so cards with taller
+   tech rows still line their actions up with shorter ones */
+.cardBody .actions {
+  margin-top: auto;
+  padding-top: 8px;
 }
 
 .mono {
@@ -241,18 +249,20 @@
 .btnCode {
   display: inline-flex;
   align-items: center;
-  padding: 10px 18px;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
   border-radius: 11px;
   background: rgba(255, 255, 255, 0.6);
   border: 1px solid var(--glass-border);
   color: var(--text-primary);
-  font-size: 13px;
-  font-weight: 600;
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
 }
 
 .btnCode:hover {
   transform: translateY(-2px);
+  color: var(--accent);
+  background: rgba(255, 255, 255, 0.85);
 }
 
 /* ---------- see all ---------- */
