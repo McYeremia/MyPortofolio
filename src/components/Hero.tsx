@@ -70,7 +70,7 @@ export default function Hero() {
             View Projects <span className={styles.mono}>↗</span>
           </a>
           <a href="#contact" className={styles.btnGlass}>
-            Get in touch <span className={styles.mono}>→</span>
+            Get in touch <span className={styles.ctaArrow}>›</span>
           </a>
         </div>
       </div>

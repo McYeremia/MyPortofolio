@@ -103,6 +103,18 @@
   transform: translateY(-3px);
 }
 
+.ctaArrow {
+  font-size: 20px;
+  line-height: 1;
+  display: inline-block;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.btnGlass:hover .ctaArrow {
+  transform: translateX(3px);
+}
+
+
 /* ---------- right: glass visual ---------- */
 .visual {
   position: relative;
