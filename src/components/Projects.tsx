@@ -34,8 +34,12 @@ export default function Projects() {
       ) : null}
 
       <div className={styles.grid}>
-        {rest.map((p) => (
-          <ProjectGridCard key={p.title} project={p} />
+        {projects.map((p) => (
+          <ProjectGridCard
+            key={p.title}
+            project={p}
+            className={p.featured ? styles.featuredGridCard : ""}
+          />
         ))}
       </div>
 

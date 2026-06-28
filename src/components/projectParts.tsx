@@ -62,9 +62,9 @@ export function Actions({ project }: { project: ProjectCard }) {
 }
 
 /** A single project rendered as a tilt-on-hover grid card. */
-export function ProjectGridCard({ project }: { project: ProjectCard }) {
+export function ProjectGridCard({ project, className }: { project: ProjectCard; className?: string }) {
   return (
-    <TiltCard className={styles.card}>
+    <TiltCard className={`${styles.card} ${className ?? ""}`}>
       <Media project={project} />
       <div className={styles.cardBody}>
         <div className={styles.tag}>{project.tag}</div>

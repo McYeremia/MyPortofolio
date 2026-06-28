@@ -138,6 +138,12 @@
   gap: 20px;
 }
 
+.card.featuredGridCard {
+  display: none;
+}
+
+
+
 .card {
   display: flex;
   flex-direction: column;
@@ -312,38 +318,32 @@
 }
 
 /* ---------- responsive ---------- */
-@media (max-width: 820px) {
+@media (max-width: 960px) {
   .featured {
-    grid-template-columns: 1fr;
+    display: none;
   }
-  .featuredMedia,
-  .featuredMedia .media {
-    min-height: 230px;
+  .card.featuredGridCard {
+    display: flex;
   }
-  .featuredBody {
-    padding: 28px;
-  }
-
-  /* Force 2-column grid on tablet portrait so cards don't float alone */
   .grid {
     grid-template-columns: repeat(2, 1fr);
   }
-
-  /* When there's an odd number of cards, stretch the last one across both columns */
-  .card:last-child:nth-child(odd) {
-    grid-column: 1 / -1;
-  }
 }
 
-@media (max-width: 560px) {
+
+@media (max-width: 600px) {
+  .featured {
+    display: none;
+  }
+  .card.featuredGridCard {
+    display: flex;
+  }
   .grid {
     grid-template-columns: 1fr;
-  }
-  /* Reset the span on mobile since it's single column */
-  .card:last-child:nth-child(odd) {
-    grid-column: auto;
   }
   .actions {
     flex-wrap: wrap;
   }
 }
+
+
