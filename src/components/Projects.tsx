@@ -1,11 +1,11 @@
 import Link from "next/link";
-import { projects, allProjectsUrl } from "@/content/portfolio";
+import { landingProjects, allProjectsUrl } from "@/content/portfolio";
 import { Media, TechRow, Actions, ProjectGridCard } from "./projectParts";
 import styles from "./Projects.module.css";
 
 export default function Projects() {
-  const featured = projects.find((p) => p.featured) ?? projects[0];
-  const rest = projects.filter((p) => p !== featured);
+  const featured =
+    landingProjects.find((p) => p.featured) ?? landingProjects[0];
 
   return (
     <section id="projects" className={styles.projects}>
@@ -34,9 +34,9 @@ export default function Projects() {
       ) : null}
 
       <div className={styles.grid}>
-        {projects.map((p) => (
+        {landingProjects.map((p) => (
           <ProjectGridCard
-            key={p.title}
+            key={p.id}
             project={p}
             className={p.featured ? styles.featuredGridCard : ""}
           />

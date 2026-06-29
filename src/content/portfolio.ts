@@ -9,6 +9,9 @@ export interface SkillCategory {
 }
 
 export interface ProjectCard {
+  /** unique slug used to reference the project, e.g. when picking which
+   *  ones appear on the landing page (see `landingProjectIds`) */
+  id: string;
   /** mono-style label, e.g. "WEB · REACT" */
   tag: string;
   title: string;
@@ -81,6 +84,7 @@ export const skills: SkillCategory[] = [
 
 export const projects: ProjectCard[] = [
   {
+    id: "settlezk",
     tag: "WEB3 · STELLAR · HACKATHON",
     title: "SettleZK",
     desc: "Private settlement on Stellar: companies see only the net difference they owe each other, never each invoice. A zero-knowledge proof shows the math is honest without ever revealing who owes whom.",
@@ -92,6 +96,7 @@ export const projects: ProjectCard[] = [
     featured: true,
   },
   {
+    id: "trustdrop",
     tag: "WEB3 · TEE · HACKATHON",
     title: "TrustDrop",
     desc: "Aid that can't be skimmed, faked, or leaked. Eligibility is verified by AI while identity stays sealed inside a secure enclave, and every disbursement is permanently audited on-chain.",
@@ -102,6 +107,7 @@ export const projects: ProjectCard[] = [
     repo: "https://github.com/McYeremia/TrustDrop",
   },
   {
+    id: "verified-agent-records",
     tag: "WEB3 · SUI · HACKATHON",
     title: "Verified Agent Records",
     desc: "Verified Agent Records: a tamper-proof ledger for AI agent activity. Every action an agent takes is recorded and cryptographically verifiable, so you can audit what an autonomous agent actually did, not just what it claims.",
@@ -112,6 +118,7 @@ export const projects: ProjectCard[] = [
     repo: "https://github.com/McYeremia/verifiedagentrecords",
   },
   {
+    id: "idxanalyst",
     tag: "FULLSTACK · AI · FINTECH",
     title: "IDXAnalyst",
     desc: "AI-powered Indonesian stock trading terminal that pits your manual strategy against Gemini and Claude AI in a portfolio battleground. Features 10 back-tested quant algorithms, techno-fundamental intelligence, and MCP integration for autonomous AI trading.",
@@ -123,6 +130,23 @@ export const projects: ProjectCard[] = [
 ];
 
 export const allProjectsUrl = "/projects";
+
+// ---- Landing page selection -------------------------------------------------
+// The /projects archive always shows EVERY project above. The landing page
+// shows only this curated shortlist. To change what appears on the landing
+// page, just edit the ids below — order here = order shown. Keep it to 4.
+export const landingProjectIds: string[] = [
+  "settlezk",
+  "trustdrop",
+  "verified-agent-records",
+  "idxanalyst",
+];
+
+/** The projects shown on the landing page, resolved from `landingProjectIds`.
+ *  Unknown ids are skipped, so a typo just drops that card (never crashes). */
+export const landingProjects: ProjectCard[] = landingProjectIds
+  .map((id) => projects.find((p) => p.id === id))
+  .filter((p): p is ProjectCard => Boolean(p));
 
 export const contacts: ContactLink[] = [
   {
