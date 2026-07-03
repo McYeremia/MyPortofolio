@@ -93,7 +93,6 @@ export const projects: ProjectCard[] = [
     tech: ["Next.js", "Stellar / Soroban", "Circom", "Groth16 ZK"],
     live: "https://settlezk.vercel.app",
     repo: "https://github.com/McYeremia/settlezk",
-    featured: true,
   },
   {
     id: "trustdrop",
@@ -127,6 +126,17 @@ export const projects: ProjectCard[] = [
     tech: ["Next.js", "FastAPI", "Tailwind", "Gemini / Claude AI"],
     repo: "https://github.com/McYeremia/IDXAnalyst",
   },
+  {
+    id: "emetiq",
+    tag: "FULLSTACK · AI · FINTECH",
+    title: "EMETIQ",
+    desc: "The evolution of IDXAnalyst — a unified terminal for Indonesian (IDX) equities that folds watchlists, portfolio tracking, a three-mode screener, and a Groq-powered AI advisor into one clean interface. Every signal and score is built on verified market data, not speculation.",
+    thumb: "[ replace screenshot ]",
+    image: "/projects/emetiq.png",
+    tech: ["Next.js", "FastAPI", "Supabase", "Groq AI"],
+    live: "https://emetiq.vercel.app",
+    featured: true,
+  },
 ];
 
 export const allProjectsUrl = "/projects";
@@ -139,7 +149,7 @@ export const landingProjectIds: string[] = [
   "settlezk",
   "trustdrop",
   "verified-agent-records",
-  "idxanalyst",
+  "emetiq",
 ];
 
 /** The projects shown on the landing page, resolved from `landingProjectIds`.
