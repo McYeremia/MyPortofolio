@@ -12,6 +12,11 @@ export const metadata: Metadata = {
 };
 
 export default function ProjectsPage() {
+  // Featured projects lead the archive (top-left), keeping their relative order.
+  const orderedProjects = [...projects].sort(
+    (a, b) => Number(b.featured ?? false) - Number(a.featured ?? false),
+  );
+
   return (
     <main className={styles.page}>
       <AmbientBackground />
@@ -30,7 +35,7 @@ export default function ProjectsPage() {
         </header>
 
         <div className={styles.grid}>
-          {projects.map((p) => (
+          {orderedProjects.map((p) => (
             <ProjectGridCard key={p.id} project={p} />
           ))}
         </div>

@@ -131,6 +131,11 @@
   text-wrap: pretty;
 }
 
+/* wraps a grid card's thumbnail so the Featured badge can position over it */
+.cardMedia {
+  position: relative;
+}
+
 /* ---------- grid ---------- */
 .grid {
   display: grid;

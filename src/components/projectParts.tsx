@@ -65,7 +65,12 @@ export function Actions({ project }: { project: ProjectCard }) {
 export function ProjectGridCard({ project, className }: { project: ProjectCard; className?: string }) {
   return (
     <TiltCard className={`${styles.card} ${className ?? ""}`}>
-      <Media project={project} />
+      <div className={styles.cardMedia}>
+        <Media project={project} />
+        {project.featured ? (
+          <span className={styles.featuredBadge}>Featured</span>
+        ) : null}
+      </div>
       <div className={styles.cardBody}>
         <div className={styles.tag}>{project.tag}</div>
         <h3 className={styles.cardTitle}>{project.title}</h3>
