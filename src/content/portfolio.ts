@@ -30,6 +30,17 @@ export interface ProjectCard {
   featured?: boolean;
 }
 
+export interface Experience {
+  /** year the role was held, shown on the timeline node, e.g. "2025" */
+  year: string;
+  /** job title in English, e.g. "President" */
+  role: string;
+  /** organization name — kept verbatim, do not translate */
+  org: string;
+  /** optional one-line summary of responsibilities; empty hides the line */
+  description?: string;
+}
+
 export type ContactIcon = "mail" | "github" | "linkedin" | "x";
 
 export interface ContactLink {
@@ -157,6 +168,21 @@ export const landingProjectIds: string[] = [
 export const landingProjects: ProjectCard[] = landingProjectIds
   .map((id) => projects.find((p) => p.id === id))
   .filter((p): p is ProjectCard => Boolean(p));
+
+// Organizational experience, newest first — rendered as a vertical timeline.
+// Job titles are in English; organization names are kept exactly as written.
+export const experiences: Experience[] = [
+  {
+    year: "2025",
+    role: "President",
+    org: "Badan Eksekutif Mahasiswa Fakultas Teknologi Informasi UKDW Yogyakarta",
+  },
+  {
+    year: "2024",
+    role: "Head of Creative Media Department",
+    org: "Badan Eksekutif Mahasiswa Fakultas Teknologi Informasi UKDW Yogyakarta",
+  },
+];
 
 export const contacts: ContactLink[] = [
   {
