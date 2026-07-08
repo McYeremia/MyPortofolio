@@ -79,7 +79,7 @@ export const skills: SkillCategory[] = [
   {
     tag: "~/backend",
     title: "Backend",
-    items: ["Node.js / Express", "Python", "PHP", "MySQL", "REST APIs"],
+    items: ["Node.js / Express", "Python", "PHP", "MySQL", "REST APIs","PostgreSQL"],
   },
   {
     tag: "~/web3",
