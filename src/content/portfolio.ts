@@ -118,7 +118,7 @@ export const projects: ProjectCard[] = [
   },
   {
     id: "qpay",
-    tag: "WEB3 · PAYMENTS · STABLECOIN",
+    tag: "WEB3 · PAYMENTS · HACKATHON",
     title: "QPay",
     desc: "QRIS, rebuilt for stablecoins. Scan one QR, sign in with an email, and pay in USDC from whichever chain already holds your funds — no wallet extension, no bridging, no gas token. Five networks collapse into one balance.",
     thumb: "[ replace screenshot ]",
