@@ -117,6 +117,17 @@ export const projects: ProjectCard[] = [
     repo: "https://github.com/McYeremia/TrustDrop",
   },
   {
+    id: "qpay",
+    tag: "WEB3 · PAYMENTS · STABLECOIN",
+    title: "QPay",
+    desc: "QRIS, rebuilt for stablecoins. Scan one QR, sign in with an email, and pay in USDC from whichever chain already holds your funds — no wallet extension, no bridging, no gas token. Five networks collapse into one balance.",
+    thumb: "[ replace screenshot ]",
+    image: "/projects/qpay.png",
+    tech: ["Next.js", "Particle UA SDK", "Magic Auth", "Arbitrum / USDC"],
+    live: "https://qpay26.vercel.app",
+    repo: "https://github.com/McYeremia/QPay",
+  },
+  {
     id: "verified-agent-records",
     tag: "WEB3 · SUI · HACKATHON",
     title: "Verified Agent Records",
@@ -158,7 +169,7 @@ export const allProjectsUrl = "/projects";
 // page, just edit the ids below — order here = order shown. Keep it to 4.
 export const landingProjectIds: string[] = [
   "settlezk",
-  "trustdrop",
+  "qpay",
   "verified-agent-records",
   "emetiq",
 ];
