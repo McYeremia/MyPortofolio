@@ -7,8 +7,8 @@ export default function Projects() {
   const featured =
     landingProjects.find((p) => p.featured) ?? landingProjects[0];
 
-  // Featured first so it leads the mobile grid; on desktop it's rendered as the
-  // large card above and hidden in the grid, so this ordering is a no-op there.
+  // Featured first so they lead the grid. The first featured project is also
+  // rendered as the large card above, so on desktop it's hidden in the grid.
   const gridProjects = [...landingProjects].sort(
     (a, b) => Number(b.featured ?? false) - Number(a.featured ?? false),
   );
@@ -44,7 +44,7 @@ export default function Projects() {
           <ProjectGridCard
             key={p.id}
             project={p}
-            className={p.featured ? styles.featuredGridCard : ""}
+            className={p.id === featured?.id ? styles.featuredGridCard : ""}
           />
         ))}
       </div>

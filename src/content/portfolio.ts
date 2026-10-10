@@ -157,6 +157,16 @@ export const projects: ProjectCard[] = [
     image: "/projects/emetiq.png",
     tech: ["Next.js", "FastAPI", "Supabase", "Groq AI"],
     live: "https://emetiq.vercel.app",
+  },
+  {
+    id: "kantong",
+    tag: "FULLSTACK · PWA · FINTECH",
+    title: "Kantong",
+    desc: "A personal finance tracker that keeps itself in sync across phone, tablet, and laptop. An installable, offline-first PWA: every screen reads from the device, never the network, and changes reach your other devices within seconds. Balances are never stored, always derived from transactions.",
+    thumb: "[ replace screenshot ]",
+    image: "/projects/kantong.png",
+    tech: ["Next.js", "Supabase", "Dexie / IndexedDB", "PWA"],
+    live: "https://kantong-gweh.vercel.app",
     featured: true,
   },
 ];
@@ -170,8 +180,8 @@ export const allProjectsUrl = "/projects";
 export const landingProjectIds: string[] = [
   "settlezk",
   "qpay",
-  "verified-agent-records",
   "emetiq",
+  "kantong",
 ];
 
 /** The projects shown on the landing page, resolved from `landingProjectIds`.

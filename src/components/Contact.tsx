@@ -16,7 +16,8 @@ export default function Contact() {
       <div className={styles.card}>
         <h2 className={styles.title}>Let&apos;s build <span className={styles.highlight}>something.</span></h2>
         <p className={styles.lead}>
-          I&apos;m open to internships, junior roles, and freelance work.
+          I&apos;m working full-time now, but still open to select freelance
+          projects and collaborations.
         </p>
         <p className={styles.findMe}>Find me here:</p>
         <div className={styles.links}>
